@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Win32;
 
-namespace Wox.Plugin.Putty
+namespace Wox.Plugin.Rdp
 {
 	
 	public class PuttyPlugin: IPlugin
@@ -18,44 +17,31 @@ namespace Wox.Plugin.Putty
 		public List<Result> Query(Query query)
 		{
 			List<Result> results = new List<Result>();
-			using (RegistryKey root = Registry.CurrentUser.OpenSubKey("Software\\SimonTatham\\PuTTY\\Sessions")) {
-				if (root != null) {
-					if (query.ActionParameters.Count == 0) {
-						results.Add(MakeResult(null, null));
-					}
-					foreach (string key in root.GetSubKeyNames()) {
-						if (query.ActionParameters.Count == 0 || key.ToLower().Contains(query.ActionParameters[0].ToLower())) {
-							using (RegistryKey session = root.OpenSubKey(key)) {
-								results.Add(MakeResult(key, session.GetValue("Protocol") + "://" + session.GetValue("UserName") + "@" + session.GetValue("HostName")));
-							}
-						}
-					}
-					if (query.ActionParameters.Count != 0) {
-						results.Add(MakeResult(null, null));
-					}
-				} else {
-					results.Add(MakeResult(null, null));
-				}
-			}
+
+		    if (query.ActionParameters.Count != 0)
+		        results.Add(MakeResult(query.ActionParameters[0], null));
+
+			results.Add(MakeResult(null, null));
+
 			return results;			
 		}
 
 		private Result MakeResult(string name, string desc)
 		{
 			return new Result() {
-				Title = name ?? "putty.exe",
-				SubTitle = desc ?? "Launch Clean Putty",
+				Title = name ?? "Remote Desktop Connection",
+				SubTitle = desc ?? "Launch Clean Remote Desktop Connection",
 				IcoPath = "Images\\plugin.png",
 				Action = e => {
 					try {
 						var p = new Process();
-						p.StartInfo.FileName = "putty";
+						p.StartInfo.FileName = "mstsc";
 						if (name != null) {
-							p.StartInfo.Arguments = "-load \"" + name + "\"";
+							p.StartInfo.Arguments = "/v:" + name;
 						}
 						p.Start();
 					} catch (Exception ex) {
-						context.ShowMsg.Invoke("Putty Error: " + name, ex.Message, ""); 
+						context.ShowMsg.Invoke("Rdp Error: " + name, ex.Message, ""); 
 						return false;
 						// ignore exception
 					}

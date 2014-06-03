@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using NUnit.Framework;
 
-namespace Wox.Plugin.Putty {
+namespace Wox.Plugin.Rdp {
 [TestFixture]
 public class PluginTest {
 	[Test]

@@ -1,12 +1,12 @@
 {
-    "ID": "54A6672C06E047A48A7D88C78FA5F13E",
-    "ActionKeyword": "pt",
-    "Name": "Wox.Plugin.Putty",
-    "Description": "Launch Putty Sessions",
-    "Author":"Konstantin Zaitcev",
+    "ID": "796D06071CCEF3CEC877FA25D56F6F2B",
+    "ActionKeyword": "rdp",
+    "Name": "Wox.Plugin.Rdp",
+    "Description": "Launch RDP Sessions",
+    "Author":"Thomas Lazar",
     "Version":"1.0",
     "Language": "csharp",
     "Website": "",
-    "ExecuteFileName": "Wox.Plugin.Putty.dll",
+    "ExecuteFileName": "Wox.Plugin.Rdp.dll",
     "IcoPath":"Images\\plugin.png"
 }

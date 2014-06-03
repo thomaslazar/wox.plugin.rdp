@@ -1,4 +1,4 @@
-wox.plugin.putty
+wox.plugin.rdp
 ================
 
-Wox plugin to launch Putty sessions
+Wox plugin to launch RDP sessions
