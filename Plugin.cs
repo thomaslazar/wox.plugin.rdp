@@ -19,7 +19,7 @@ namespace Wox.Plugin.Rdp
 			List<Result> results = new List<Result>();
 
 		    if (query.ActionParameters.Count != 0)
-		        results.Add(MakeResult(query.ActionParameters[0], null));
+		        results.Add(MakeResult(query.ActionParameters[0], ""));
 
 			results.Add(MakeResult(null, null));
 
